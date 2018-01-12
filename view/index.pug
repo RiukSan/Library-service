@@ -1,0 +1,17 @@
+html
+  head
+  body
+    h1 Find form
+    form(action="find", method="get")
+        input#textField(type="text", name="bookTitle", placeholder="title")
+        input#textField(type="text", name="bookAuthor", placeholder="author name")
+        button(type="submit") Find
+    h1 Order form
+    form(action="order", method="get")
+        input#textField(type="text", name="bookIndex", placeholder="index", required)
+        input#textField(type="text", name="abonent", placeholder="abonent", required)
+        button(type="submit") Order
+    h1 Return form
+    form(action="return", method="get")
+        input#textField(type="text", name="bookIndex", placeholder="index", required)
+        button(type="submit") Return

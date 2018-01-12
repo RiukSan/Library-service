@@ -1,0 +1,5 @@
+Index=1004
+Author=Asimov
+Name=Foundation
+Issued=2018.01.12
+Issuedto=Ivanov
