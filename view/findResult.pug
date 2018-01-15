@@ -1,5 +1,7 @@
 html
   head
   body
-    each item in found.split('\n')
-      li= item
+  ul
+    each item, index in found
+      li= index+JSON.stringify(item)
+

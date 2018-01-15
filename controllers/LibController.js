@@ -1,4 +1,4 @@
-var bookService = require(projectPath+'/service/BookService');
+var bookService = require(projectPath + '/service/BookService');
 
 function handle(app) {
     app.get('/find', function (req, res) {
