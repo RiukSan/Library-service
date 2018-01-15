@@ -2,12 +2,15 @@ Library-service
 =======
 Library service, that provides user functionality to find, order and return books from libraries.
 
+Installation
+------
+Open terminal in project directory and call "npm install".
+
 Usage
 ------
-Entrance point of application is file in project directory named index.js.
 Application uses file system as datastore. Data can be provided in text or csv formats.
 
-Default path to datastore is in directory called "Library", path to datastore can be changed in variable LIBRARY_FOLDER inside index.js file.
+Default path to datastore is in directory called "Library", path to datastore can be changed in package.json in configuration with "lib_folder" key.
 
 If you need to create library with text format - use prefix for library name "TEXT_", otherwise if you need library with csv format - use prefix "CSV_".
 Each directory in datastore represents one library. There are files with .csv or .txt formats according to library type, each file represents one book in library.
@@ -21,8 +24,11 @@ Here are file examples for books:
         Issued=yyyy.mm.dd<br>
         IssuedTo=clientname<br>
 
-Application listens port 8080 by default, it can be changed in index.js file.
-After running the application go to http://localhost:8080/.
+Application listens port 8080 by default, it can be changed in package.json file with "port" key.
+
+Launching
+------
+Open terminal in project directory and call "npm start". After launching of the application go to http://localhost:"port"/.
 
 Possible results
 ------
@@ -46,3 +52,5 @@ There are different possible answers while using functionality.
 Requirements
 ------
 Node js v.8.9.4
+
+npm v.5.6.0
