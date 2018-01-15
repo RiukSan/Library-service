@@ -52,3 +52,4 @@ There are different possible answers while using functionality.
 Requirements
 ------
 Node js v.8.9.4
+npm v.5.6.0
