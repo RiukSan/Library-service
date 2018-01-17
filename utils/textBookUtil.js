@@ -1,4 +1,4 @@
-var book = require(projectPath+'/model/Book');
+var book = require('../model/Book');
 
 function convertDataToBook(data) {
     try {

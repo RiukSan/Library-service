@@ -1,63 +1,22 @@
-var book = require(projectPath+'/model/Book');
+var book = require('../model/Book');
 var fs = require('fs');
 var walk = require('walk');
-var csvBookUtil = require(projectPath+'/utils/csvBookUtil');
-var textBookUtil = require(projectPath+'/utils/textBookUtil');
+var path = require('path');
+var csvBookUtil = require('../utils/csvBookUtil');
+var textBookUtil = require('../utils/textBookUtil');
 
-function find(title, author) {
+function findAll() {
     return new Promise(function (resolve, reject) {
         var result = [];
         walker = walk.walk(LIBRARY_FOLDER);
         walker.on('file', function (root, fileStats, next) {
             fs.readFile(root + '/' + fileStats.name, 'utf8', (err, data) => {
-                try {
-                    var curBook = null;
-                    if (root.indexOf('CSV_') != -1) {
-                        curBook = csvBookUtil.convertDataToBook(data);
-                    } else if (root.indexOf('TEXT_') != -1) {
-                        curBook = textBookUtil.convertDataToBook(data);
-                    }
-                    curBook.libPath = root;
-                    curBook.fileName = fileStats.name;
-                    if ((author != '' || title != '') && curBook.title.indexOf(title) != -1 && curBook.author.indexOf(author) != -1) {
-                        result.push(curBook);
-                    }
-                } catch (err) {
-                    console.log('Error was throwed with data:' + data);
-                } finally {
-                    next();
-                }
-            });
-        });
-        walker.on('end', function () {
-            resolve(result);
-        })
-    })
-};
-
-function findById(index) {
-    return new Promise(function (resolve, reject) {
-        var result = [];
-        walker = walk.walk(LIBRARY_FOLDER);
-        walker.on('file', function (root, fileStats, next) {
-            fs.readFile(root + '/' + fileStats.name, 'utf8', (err, data) => {
-                try {
-                    var curBook = null;
-                    if (root.indexOf('CSV_') != -1) {
-                        curBook = csvBookUtil.convertDataToBook(data);
-                    } else if (root.indexOf('TEXT_') != -1) {
-                        curBook = textBookUtil.convertDataToBook(data);
-                    }
-                    curBook.libPath = root;
-                    curBook.fileName = fileStats.name;
-                    if (index != '' && curBook.getIndex() == index) {
-                        result.push(curBook);
-                    }
-                } catch (err) {
-                    console.log('Error was throwed with data:' + data);
-                } finally {
-                    next();
-                }
+                var dataObject = {};
+                dataObject.data = data;
+                dataObject.root = root;
+                dataObject.fileName = fileStats.name;
+                result.push(dataObject);
+                next();
             });
         });
         walker.on('end', function () {
@@ -75,14 +34,23 @@ function update(bookToUpdate) {
         } else if (bookToUpdate.libPath.indexOf('TEXT_') != -1) {
             data = textBookUtil.convertBookToData(bookToUpdate);
         }
+        ensureDirectoryExistence(fullBookPath);
         fs.writeFile(fullBookPath, data, 'utf8', (err) => {
             if (err) throw err;
-            console.log(fullBookPath+' was saved.');
+            console.log(fullBookPath + ' was saved.');
         });
         resolve();
     })
 };
 
-module.exports.findById = findById;
-module.exports.find = find;
+function ensureDirectoryExistence(filePath) {
+    var dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+        return true;
+    }
+    ensureDirectoryExistence(dirname);
+    fs.mkdirSync(dirname);
+}
+
+module.exports.findAll = findAll;
 module.exports.update = update;

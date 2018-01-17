@@ -15,3 +15,9 @@ html
     form(action="return", method="get")
         input#textField(type="text", name="bookIndex", placeholder="index", required)
         button(type="submit") Return
+    h1 Create form
+    form(action="create", method="get")
+        input#textField(type="text", name="bookTitle", placeholder="title", required)
+        input#textField(type="text", name="bookAuthor", placeholder="author name", required)
+        input#textField(type="text", name="libName", placeholder="library name", required)
+        button(type="submit") Create
