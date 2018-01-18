@@ -1,5 +1,6 @@
 var bookController = require('../controllers/BookController');
 var libraryController = require('../controllers/LibraryController');
+var userController = require('../controllers/UserController');
 
 function handle(app) {
     app.get('/find', function (req, res) {
@@ -18,6 +19,10 @@ function handle(app) {
         bookController.create(req, res);
     });
 
+    app.get('/lib', function (req, res) {
+        libraryController.start(req, res);
+    });
+
     app.get('/lib/createLibrary', function (req, res) {
         libraryController.create(req, res);
     });
@@ -30,8 +35,20 @@ function handle(app) {
         libraryController.updateLibrary(req, res);
     });
 
-    app.get('/lib', function (req, res) {
-        libraryController.start(req, res);
+    app.get('/usr', function (req, res) {
+        userController.start(req, res);
+    });
+
+    app.get('/usr/createUser', function (req, res) {
+        userController.create(req, res);
+    });
+
+    app.get('/usr/delete', function (req, res) {
+        userController.deleteUser(req, res);
+    });
+
+    app.get('/usr/update', function (req, res) {
+        userController.updateUser(req, res);
     });
 
     app.get('/', function (req, res) {

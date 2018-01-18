@@ -2,7 +2,7 @@ span All libraries:
 ul
     each item in found.ALL
         li= JSON.stringify(item)
-            a(href="delete?libTitle="+item.title+"&libType="+item.item+"&libAddress="+item.address) delete
+            a(href="delete?libTitle="+item.title) delete
             a(href="javascript:showUpdateForm("+item.title+")", style="margin-left:5px;") update
             form(id=item.title, action="update", method="get", style="display:none;")
                 input#textField(name="newLibTitle", type="text", placeholder="title", required, value=item.title)

@@ -5,7 +5,8 @@
   "config": {
     "port": "8080",
     "lib_folder": "./Libraries_folder",
-    "lib": "./Libraries"
+    "lib": "./Libraries",
+    "usr_folder": "./Users"
   },
   "dependencies": {
     "express": "^4.16.2",

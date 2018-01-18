@@ -3,7 +3,6 @@ var library = require('../model/Library');
 var csvLibraryUtil = require('../utils/csvLibraryUtil');
 
 function createLibrary(title, type, address) {
-    var index = Math.round(Math.random() * 10000);
     var tempLib = new library(title, type, address);
     libraryDao.create(tempLib);
 };
