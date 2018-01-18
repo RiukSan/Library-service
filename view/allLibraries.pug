@@ -1,0 +1,18 @@
+span All libraries:
+ul
+    each item in found.ALL
+        li= JSON.stringify(item)
+            a(href="delete?libTitle="+item.title+"&libType="+item.item+"&libAddress="+item.address) delete
+            a(href="javascript:showUpdateForm("+item.title+")", style="margin-left:5px;") update
+            form(id=item.title, action="update", method="get", style="display:none;")
+                input#textField(name="newLibTitle", type="text", placeholder="title", required, value=item.title)
+                input#textField(name="newLibType", type="text", placeholder="type", required, value=item.type)
+                input#textField(name="newLibAddress", type="text", placeholder="address", required, value=item.address)
+                button(type="submit") Update
+                input(name="libTitle", type="hidden", value=item.title)
+                input(name="libType", type="hidden", value=item.type)
+                input(name="libAddress", type="hidden", value=item.address)
+script.
+    function showUpdateForm(title){
+        title.style="";
+    }

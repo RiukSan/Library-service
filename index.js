@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 
 global.LIBRARY_FOLDER = process.env.npm_package_config_lib_folder;
+global.LIB = process.env.npm_package_config_lib;
 
 var mainRouter = require('./router/mainRouter');
 

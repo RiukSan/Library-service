@@ -1,6 +1,7 @@
 html
   head
   body
+  = JSON.stringify(found)
   ul
     each item, index in found
       li= index+JSON.stringify(item)

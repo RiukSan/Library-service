@@ -176,12 +176,15 @@ function returnBook(index) {
 }
 
 function createBook(title, author, libName) {
-    var index = Math.round(Math.random() * 10000);
-    var tempBook = new book(index, title, author);
-    tempBook.fileName = title + ".csv";
-    tempBook.libPath = LIBRARY_FOLDER + "/CSV_" + libName;
-    bookDao.update(tempBook);
-}
+    return new Promise(function (resolve, reject) {
+        var index = Math.round(Math.random() * 10000);
+        var tempBook = new book(index, author, title);
+        tempBook.fileName = title + ".csv";
+        tempBook.libPath = LIBRARY_FOLDER + "/CSV_" + libName;
+        bookDao.update(tempBook);
+        resolve(index);
+    })
+};
 
 function checkBookAvailability(book) {
     if (book.issued != '') {

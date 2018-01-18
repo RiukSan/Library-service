@@ -1,7 +1,5 @@
 var bookService = require('../service/BookService');
 
-var self = this;
-
 function find(req, res) {
     bookService.find(req.query.bookTitle, req.query.bookAuthor).then((value) => {
         var values = value;
@@ -35,9 +33,10 @@ function create(req, res) {
     var title = req.query.bookTitle;
     var author = req.query.bookAuthor;
     var libName = req.query.libName;
-    bookService.createBook(title, author, libName);
-    res.render('index');
-    res.end();
+    bookService.createBook(title, author, libName).then((value) => {
+        res.render('index', { bookIndex: value });
+        res.end();
+    })
 }
 
 function error(req, res) {

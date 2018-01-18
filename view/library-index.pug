@@ -1,0 +1,11 @@
+html
+  head
+  body
+    a(href="/") Move to book part
+    h1 Create form
+    form(action="/lib/createLibrary", method="get")
+        input#textField(name="libTitle", type="text", placeholder="title", required)
+        input#textField(name="libType", type="text", placeholder="type", required)
+        input#textField(name="libAddress", type="text", placeholder="address", required)
+        button(type="submit") Create
+    include ./allLibraries.pug
