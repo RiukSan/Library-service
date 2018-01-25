@@ -6,9 +6,9 @@ ul
             a(href="javascript:showUpdateForm("+item.name+")", style="margin-left:5px;") update
             form(id=item.name, action="update", method="get", style="display:none;")
                 input#textField(name="newUserName", type="text", placeholder="name", required, value=item.name)
-                input#textField(name="newUserSurname", type="text", placeholder="type", required, value=item.surname)
-                input#textField(name="newUserAge", type="text", placeholder="address", required, value=item.age)
-                input#textField(name="newUserSex", type="text", placeholder="address", required, value=item.sex)
+                input#textField(name="newUserSurname", type="text", placeholder="surname", required, value=item.surname)
+                input#textField(name="newUserAge", type="text", placeholder="age", required, value=item.age)
+                input#textField(name="newUserSex", type="text", placeholder="sex", required, value=item.sex)
                 button(type="submit") Update
                 input(name="userName", type="hidden", value=item.name)
                 input(name="userSurname", type="hidden", value=item.surname)

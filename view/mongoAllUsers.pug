@@ -1,0 +1,17 @@
+span All users:
+ul
+    each item in found.ALL
+        li= JSON.stringify(item)
+            a(href="delete?userId="+item._id) delete
+            a(href="javascript:showUpdateForm(\""+item._id+"\")", style="margin-left:5px;") update
+            form(id=item._id, action="update", method="get", style="display:none;")
+                input(name="userId", type="hidden", value=item._id)
+                input#textField(name="newUserName", type="text", placeholder="name", required, value=item.name.firstName)
+                input#textField(name="newUserSurname", type="text", placeholder="surname", required, value=item.name.surName)
+                input#textField(name="newUserAge", type="number", placeholder="age", required, value=item.age)
+                input#textField(name="newUserSex", type="text", placeholder="sex", required, value=item.sex)
+                button(type="submit") Update
+script.
+    function showUpdateForm(name){
+        document.getElementById(name).style = "";
+    }

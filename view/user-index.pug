@@ -8,7 +8,10 @@ html
     form(action="/usr/createUser", method="get")
         input#textField(name="userName", type="text", placeholder="name", required)
         input#textField(name="userSurname", type="text", placeholder="surname", required)
-        input#textField(name="userAge", type="text", placeholder="age", required)
+        input#textField(name="userAge", type="number", placeholder="age", required)
         input#textField(name="userSex", type="text", placeholder="sex", required)
         button(type="submit") Create
-    include ./allUsers.pug
+    if db_type!="mongo"
+        include ./allUsers.pug
+    else
+        include ./mongoAllUsers.pug

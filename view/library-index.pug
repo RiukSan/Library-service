@@ -10,4 +10,7 @@ html
         input#textField(name="libType", type="text", placeholder="type", required)
         input#textField(name="libAddress", type="text", placeholder="address", required)
         button(type="submit") Create
-    include ./allLibraries.pug
+    if db_type!="mongo"
+        include ./allLibraries.pug
+    else
+        include ./mongoAllLibs.pug

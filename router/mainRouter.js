@@ -1,6 +1,12 @@
-var bookController = require('../controllers/BookController');
-var libraryController = require('../controllers/LibraryController');
-var userController = require('../controllers/UserController');
+if (DB_TYPE == "fs") {
+    var bookController = require('../controllers/BookController');
+    var libraryController = require('../controllers/LibraryController');
+    var userController = require('../controllers/UserController');
+} else if (DB_TYPE == "mongo") {
+    var bookController = require('../controllers/mongo/BookController');
+    var libraryController = require('../controllers/mongo/LibraryController');
+    var userController = require('../controllers/mongo/UserController');
+}
 
 function handle(app) {
     app.get('/find', function (req, res) {
@@ -34,6 +40,10 @@ function handle(app) {
     app.get('/lib/update', function (req, res) {
         libraryController.updateLibrary(req, res);
     });
+
+    app.get('/lib/assignBook', function (req, res) {
+        libraryController.assignBookToLibrary(req, res);
+    })
 
     app.get('/usr', function (req, res) {
         userController.start(req, res);
