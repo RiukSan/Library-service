@@ -12,7 +12,7 @@ function createUser(name, surname, age, sex) {
         tempUser.age = age;
         tempUser.sex = sex;
         userDao.save(tempUser).then(() => {
-            resolve();
+            resolve(tempUser._id);
         });
     })
 };
@@ -77,3 +77,4 @@ module.exports.createUser = createUser;
 module.exports.deleteUser = deleteUser;
 module.exports.updateUser = updateUser;
 module.exports.findAll = findAll;
+module.exports.findById = findById;

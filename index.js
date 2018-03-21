@@ -1,11 +1,12 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+const args = require('yargs').argv;
 
-global.DB_TYPE = process.env.npm_package_config_db_type;
-global.LIBRARY_FOLDER = process.env.npm_package_config_lib_folder;
-global.USER_FOLDER = process.env.npm_package_config_usr_folder;
-global.LIB = process.env.npm_package_config_lib;
+global.DB_TYPE = args.db_type;
+global.LIBRARY_FOLDER = args.lib_folder;
+global.USER_FOLDER = args.usr_folder;
+global.LIB = args.lib;
 
 var mainRouter = require('./router/mainRouter');
 
@@ -24,4 +25,4 @@ if (DB_TYPE == "mongo") {
 } else {
     mainRouter.handle(app);
 }
-app.listen(process.env.npm_package_config_port);
+app.listen(args.port);

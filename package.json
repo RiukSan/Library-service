@@ -2,23 +2,19 @@
   "name": "test",
   "version": "1.0.0",
   "main": "index.js",
-  "config": {
-    "port": "8080",
-    "lib_folder": "./Libraries_folder",
-    "lib": "./Libraries",
-    "usr_folder": "./Users",
-    "db_type": "mongo"
-  },
   "dependencies": {
     "express": "^4.16.2",
     "mongoose": "^5.0.0",
     "pug": "^2.0.0-rc.4",
     "rimraf": "^2.6.2",
-    "walk": "^2.3.9"
+    "walk": "^2.3.9",
+    "yargs": "^11.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^5.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node index.js",
     "debug": "node --inspect index.js"
   },

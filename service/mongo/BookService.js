@@ -66,7 +66,7 @@ function order(index, abonent) {
                     tempArr = tempArr.concat(value[item]);
                     for (item in tempArr) {
                         var curBook = tempArr[item];
-                        if (index != '' && curBook._id == index) {
+                        if (index != '' && curBook._id.toString() == index.toString()) {
                             if (checkBookAvailability(curBook)) {
                                 curBook.issuedTo = new mongoose.mongo.ObjectId(abonent);
                                 curBook.issued = now;
@@ -103,7 +103,7 @@ function returnBook(index) {
                     tempArr = tempArr.concat(value[item]);
                     for (item in tempArr) {
                         var curBook = tempArr[item];
-                        if (index != '' && curBook._id == index) {
+                        if (index != '' && curBook._id.toString() == index.toString()) {
                             if (!checkBookAvailability(curBook)) {
                                 curBook.issuedTo = undefined;
                                 curBook.issued = undefined;
@@ -125,7 +125,7 @@ function returnBook(index) {
     })
 }
 
-function createBook(title, author, libName) {
+function createBook(title, author) {
     return new Promise(function (resolve, reject) {
         var tempBook = new book({
             _id: new mongoose.Types.ObjectId(),
@@ -133,7 +133,7 @@ function createBook(title, author, libName) {
             author: author
         });
         bookDao.save(tempBook).then((value) => {
-            resolve(value);
+            resolve(tempBook);
         });
     })
 };
